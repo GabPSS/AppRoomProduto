@@ -1,10 +1,18 @@
-package br.unisanta.approomproduto
+package br.unisanta.approomproduto.view
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
+import kotlinx.coroutines.launch
+import br.unisanta.approomproduto.dao.ProductDao
+import br.unisanta.approomproduto.databinding.ActivityMainBinding
+import br.unisanta.approomproduto.db.AppDatabase
+import br.unisanta.approomproduto.model.Product
+
+import br.unisanta.approomproduto.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
