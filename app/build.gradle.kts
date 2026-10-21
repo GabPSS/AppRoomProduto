@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "br.unisanta.approomproduto"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "br.unisanta.approomproduto"
