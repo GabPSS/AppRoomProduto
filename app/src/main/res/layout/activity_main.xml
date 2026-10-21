@@ -31,4 +31,21 @@
         android:layout_height="wrap_content"
         android:text="Listar Produtos" />
 
+    <EditText
+        android:id="@+id/editSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Pesquisa" />
+
+    <Button
+        android:id="@+id/btnPesquisar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pesquisar"/>
+
+    <TextView
+        android:id="@+id/txvProdutos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

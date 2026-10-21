@@ -13,4 +13,6 @@ interface ProductDao {
     @Insert
     suspend fun insertAll(vararg products: Product)
 
+    @Query("SELECT * FROM product WHERE name LIKE :nome")
+    suspend fun buscarPorNome(nome: String): List<Product>
 }
