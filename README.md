@@ -173,6 +173,7 @@ binding.btnAtualizar.setOnClickListener {
 }
 ```
 Print: ![A8](docs/prints/a8.png)
+
 O que aconteceu com os itens: Após a alteração da versão do banco de dados, os dados anteriores foram excluídos.
 
 ## Parte B: Questões dissertativas
