@@ -185,7 +185,30 @@ Resposta: Diferente de utilizar uma biblioteca de conexão direta com o SQLite, 
 1. Facilidade de integração com outras bibliotecas ORM, pois utiliza sintaxes semelhantes a outros sistemas compatíveis
 2. Redução de código, pois reduz a necessidade de escrever e gerenciar queries SQL manualmente.
 
-### B3
+### B3. Explique as três partes do Room...
+Resposta: As partes do Room são:
+1. Entity: É o modelo de dados, definindo a estrutura de uma tabela no banco e mapeando suas colunas a propriedades da classe.
+2. DAO: É a interface que permite que as camadas de negócios do projeto manipulem registros do banco de dados através de objetos. Expõe os métodos CRUD para uso no projeto.
+3. Database: É o objeto que representa o banco de dados em si.
+Os três componentes integram uma interface completa de gerenciamento de dados utilizando o SQLite como SGBD.
+
+### B4. Por que o Android não permite acessar o banco de dados na thread principal...?
+Resposta: A interface de UI não deve ser ocupada por tarefas demoradas, como a consulta em bancos de dados, pois ao fazê-lo, permite que o aplicativo deixe de responder para o usuário, gerando mensagens como ANR (Application Not Responding). Devido a esse problema, o Android não permite essa operação, exigindo (no caso do Kotlin) o uso do atributo `suspend` e `lifecycleScope.launch`. Semelhante aos comandos `async` e `await` em outras linguagens, são responsáveis por garantir a assincronia da operação de consulta, evitando que a thread de UI seja congelada, e delegando o processo demorado para uma thread secundária.
+
+
+### B5. O que faz o fallbackToDestructiveMigration()...?
+Resposta: Um fallback para migração destrutiva é método de migração que exclui os dados armazenados quando o bando de dados deve ser atualizado para uma nova versão. É perigoso, pois no caso de uma atualização final, isto significaria excluir dados dos clientes do aplicativo. Por conta disso, existem as técnicas de Migração ('migration'). São scripts ou métodos especializados em transformar os dados de uma versão antiga do banco de dados para uma versão nova.
+
+### B6. Qual a vantagem do ViewBinding...?
+Resposta: O ViewBinding tem a vantagem principal de reduzir o código e garantir a consistência dos IDs das views. Neste cenário, ao alterar os IDs de uma view, o código se recusa a compilar até que suas referências correspondentes sejam devidamente atualizadas.
+
+### B7. Por que em apps maiores é recomendado criar o banco como Singleton...?
+Resposta: Como a instância do banco de dados está contida na MainActivity, seria necessário instanciar novamente o mesmo banco em outras activities em que este seja necessário, criando inconsistências e múltiplos acessos ao mesmo objeto. Neste caso, extrair a instância a um singleton referenciado por todos os usuários do banco não apenas garante a consistência e evita a duplicidade de código, mas garante que o banco de dados opere adequadamente na aplicação.
+
+### B8. Principais dificuldades, app real e aplicação
+Resposta: A principal dificuldade encontrada foi a adição de um novo campo que, devido à estrutura atual, tornou-se desafiador devido à quantidade de referências semelhantes no mesmo arquivo. Em um caso real, seria recomendado segregar estas funções em classes distintas alinhadas a uma camada específica de negócios (BLL).
+
+A grande maioria dos aplicativos que possuem alguma interatividade exigindo autenticação por login e senha exigem a persistência de, ao menos, uma token de acesso. Além disso, aplicativos de ferramentas locais podem exigir armazenamento no dispositivo, como por exemplo, um aplicativo de finanças pessoais. Neste caso, pela complexidade de classes (Conta, Transação, etc.) a funcionalidade de gerenciamento de dados através do Room se faz particularmente útil, podendo ser aplicada para armazenar estes dados no próprio dispositivo, ampliando a privacidade e segurança do dados processados. 
 
 ## Como executar
 1. Clone o repositório
