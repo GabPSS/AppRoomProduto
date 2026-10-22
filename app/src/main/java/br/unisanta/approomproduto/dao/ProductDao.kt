@@ -3,6 +3,7 @@ package br.unisanta.approomproduto.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import br.unisanta.approomproduto.model.Product
 
 @Dao
@@ -15,4 +16,10 @@ interface ProductDao {
 
     @Query("SELECT * FROM product WHERE name LIKE :nome")
     suspend fun buscarPorNome(nome: String): List<Product>
+
+    @Query("DELETE FROM product")
+    suspend fun deleteAll()
+
+    @Query("UPDATE product SET price = :price WHERE id = :id")
+    suspend fun alterarProduto(price: Double, id: Int)
 }

@@ -20,6 +20,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Descrição" />
+    <EditText
+        android:id="@+id/editProductQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Quantidade" />
     <Button
         android:id="@+id/btnInserirProduto"
         android:layout_width="wrap_content"
@@ -30,6 +35,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Listar Produtos" />
+
+    <Button
+        android:id="@+id/btnExcluir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Excluir todos"/>
 
     <EditText
         android:id="@+id/editSearch"
@@ -43,9 +54,29 @@
         android:layout_height="wrap_content"
         android:text="Pesquisar"/>
 
+    <EditText
+        android:id="@+id/editAtualizarId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID do produto" />
+
+    <EditText
+        android:id="@+id/editAtualizarPreco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Preço a ser alterado" />
+
+    <Button
+        android:id="@+id/btnAtualizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atualizar Preço"/>
+
     <TextView
         android:id="@+id/txvProdutos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
 
 </LinearLayout>

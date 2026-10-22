@@ -102,11 +102,91 @@ binding.btnPesquisar.setOnClickListener {
 ```
 Print: ![A5](docs/prints/a5.png)
 
-(repita para A2 até A8)
+### A6. Excluir produtos
+
+O que foi feito: Implementamos a funcionalidade de excluir todos os itens.
+Trecho de código:
+```kotlin
+binding.btnExcluir.setOnClickListener { 
+            lifecycleScope.launch { 
+                productDao.deleteAll()
+                Log.i("TAG", "Todos os produtos foram excluídos.")
+                Toast.makeText(this@MainActivity, "Produtos excluídos com sucesso!",
+                    Toast.LENGTH_SHORT).show()
+            }
+        }
+```
+Print: ![A6](docs/prints/a6.png)
+
+### A7. Atualização de Preço
+
+O que foi feito: Implementamos a funcionalidade de alterar o preço de um item informando o seu ID.
+Trecho de código:
+```kotlin
+binding.btnAtualizar.setOnClickListener {
+    val productId = binding.editAtualizarId.text.toString()
+    val priceText = binding.editAtualizarPreco.text.toString()
+
+    if (productId.isNotEmpty() && priceText.isNotEmpty()) {
+        if (priceText.toDouble() > 0) {
+            lifecycleScope.launch {
+                productDao.alterarProduto(price = priceText.toDouble(), id = productId.toInt())
+                Log.i("TAG", "Produto alterado: ID = $productId, Novo preço: $priceText.")
+                Toast.makeText(this@MainActivity, "Produto $productId alterado!",
+                    Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            binding.editAtualizarPreco.error = "Informe um preço válido"
+        }
+    } else {
+        Toast.makeText(this, "Preencha os campos obrigatórios!",
+            Toast.LENGTH_SHORT).show()
+    }
+}
+```
+Print: ![A7](docs/prints/a7.png)
+
+### A8. Novo campo na tabela
+
+O que foi feito: Implementamos o campo quantidade no banco de dados.
+Trecho de código:
+```kotlin
+binding.btnAtualizar.setOnClickListener {
+    val productId = binding.editAtualizarId.text.toString()
+    val priceText = binding.editAtualizarPreco.text.toString()
+
+    if (productId.isNotEmpty() && priceText.isNotEmpty()) {
+        if (priceText.toDouble() > 0) {
+            lifecycleScope.launch {
+                productDao.alterarProduto(price = priceText.toDouble(), id = productId.toInt())
+                Log.i("TAG", "Produto alterado: ID = $productId, Novo preço: $priceText.")
+                Toast.makeText(this@MainActivity, "Produto $productId alterado!",
+                    Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            binding.editAtualizarPreco.error = "Informe um preço válido"
+        }
+    } else {
+        Toast.makeText(this, "Preencha os campos obrigatórios!",
+            Toast.LENGTH_SHORT).show()
+    }
+}
+```
+Print: ![A8](docs/prints/a8.png)
+O que aconteceu com os itens: Após a alteração da versão do banco de dados, os dados anteriores foram excluídos.
+
 ## Parte B: Questões dissertativas
+
 ### B1. O que é persistência de dados...?
-Resposta: ...
-(repita para B2 até B8)
+Resposta: Persistência de dados é a capacidade de um aplicativo de armazenar dados em um formato durável, de forma que ele permaneça cadastrado ao longo de múltiplas reinicializações. Caso os produtos fossem guardados apenas em uma mutablelist, seriam excluídos assim que o aplicativo encerrasse.
+
+### B2. Qual a diferença de usar SQLite diretamente...?
+Resposta: Diferente de utilizar uma biblioteca de conexão direta com o SQLite, utilizar o Room não exige, diretamente, a escrita de códigos SQL, pois envelopa as requisições em uma camada ORM, permitindo que a manipulação dos registros do banco seja realizada através de objetos. Entre as vantagens, pode-se citar:
+1. Facilidade de integração com outras bibliotecas ORM, pois utiliza sintaxes semelhantes a outros sistemas compatíveis
+2. Redução de código, pois reduz a necessidade de escrever e gerenciar queries SQL manualmente.
+
+### B3
+
 ## Como executar
 1. Clone o repositório
 2. Abra no Android Studio
